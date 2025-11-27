@@ -1,33 +1,23 @@
-import React, {useRef, useState} from 'react';
+import Timer from "./components/Timer.jsx";
 
 const App = () => {
-    const timerRef = useRef(null);
-
-    const [time, setTime] = useState(0)
-    const [isRunning, setIsRunning] = useState(false)
-
-    const toggleTimer = () => {
-        if (isRunning) {
-            clearInterval(timerRef.current)
-            timerRef.current = null
-        } else {
-            timerRef.current = setInterval(() => {
-                setTime((prev) => prev + 1);
-            },1000)
-        }
-        setIsRunning(!isRunning);
-    }
-
     return (
-        <div className="max-w-md mx-auto mt-10 p-6 bg-gray-100 rounded-lg shadow-lg text-center">
-            <h2 className="text-4xl font-semibold mt-4">⏳ Timer: {time}</h2>
-            <button
-                onClick={toggleTimer}
-                className="mt-3 bg-green-500 text-white px-4 py-2 rounded hover: bg-green-600"
-            >
-                {isRunning ? 'Pause' : 'Start'}
-            </button>
+        <div className="
+            min-h-screen
+            flex items-center justify-center
+            bg-gradient-to-br from-gray-900 via-black to-gray-800
+            relative text-center
+        ">
 
+            {/* Glow background effect */}
+            <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute w-[500px] h-[500px] bg-teal-400/20 blur-[180px] rounded-full -top-20 -left-20"></div>
+                <div className="absolute w-[400px] h-[400px] bg-pink-500/20 blur-[180px] rounded-full bottom-0 right-0"></div>
+            </div>
+
+            <div className="relative z-10">
+                <Timer />
+            </div>
         </div>
     );
 };
